@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+/* Keep your theme vars (Tailwind v4 style) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0714;        /* deep WrapAI purple-black */
+  --foreground: #f5f7fb;
+
+  --wrapai-purple: #5b2bd8;
+  --wrapai-cyan: #2ed4ff;
+
+  --wrapai-ink: #07060d;
+  --wrapai-panel: rgba(255,255,255,0.05);
+  --wrapai-border: rgba(255,255,255,0.10);
+
+  --wrapai-red: #e1062f;        /* motorsport accent */
+  --wrapai-yellow: #ffdd00;     /* section punch (optional) */
 }
 
 @theme inline {
@@ -12,20 +23,226 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* WrapAI marquee */
+/* ---------- WrapAI “Assetto-inspired” Utility Classes ---------- */
+
+.wrapai-shell {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.wrapai-container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.wrapai-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10, 8, 18, 0.86);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+}
+
+.wrapai-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.wrapai-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wrapai-brandMark {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+}
+
+.wrapai-brandText {
+  line-height: 1.1;
+}
+.wrapai-brandText strong {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.wrapai-brandText span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.wrapai-navLinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.wrapai-link {
+  opacity: 0.75;
+  transition: opacity 120ms ease;
+}
+.wrapai-link:hover { opacity: 1; }
+
+.wrapai-cta {
+  background: var(--wrapai-red);
+  color: white;
+  border: 0;
+  padding: 12px 18px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(225, 6, 47, 0.25);
+}
+.wrapai-cta:hover { filter: brightness(1.03); }
+
+.wrapai-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.wrapai-heroInner {
+  padding: 54px 0 26px 0;
+}
+
+.wrapai-heroGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1.1fr 0.9fr;
+}
+@media (max-width: 980px) {
+  .wrapai-heroGrid { grid-template-columns: 1fr; }
+}
+
+.wrapai-heroTitle {
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 0.95;
+  font-weight: 1000;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.wrapai-heroTitle .accent { color: var(--wrapai-red); }
+.wrapai-heroSub {
+  margin-top: 12px;
+  max-width: 56ch;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.82;
+}
+
+.wrapai-heroBadges {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.wrapai-pill {
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.18);
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Solid blocks like Assetto */
+.wrapai-block {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.wrapai-blockPurple {
+  background: linear-gradient(90deg, rgba(91,43,216,0.20), rgba(46,212,255,0.10));
+}
+
+.wrapai-blockYellow {
+  background: var(--wrapai-yellow);
+  color: #111;
+}
+.wrapai-blockYellow .muted { opacity: 0.75; }
+
+.wrapai-section {
+  padding: 22px 0;
+}
+
+.wrapai-sectionTitle {
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  opacity: 0.75;
+  margin-bottom: 10px;
+}
+
+.wrapai-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.wrapai-input,
+.wrapai-select {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.22);
+  color: var(--foreground);
+  padding: 12px 12px;
+  font-weight: 800;
+  outline: none;
+}
+.wrapai-input:focus,
+.wrapai-select:focus {
+  border-color: rgba(46, 212, 255, 0.45);
+}
+
+.wrapai-btn {
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+}
+.wrapai-btn:hover { background: rgba(255,255,255,0.12); }
+
+.wrapai-btnPrimary {
+  background: var(--wrapai-red);
+  border-color: rgba(225,6,47,0.35);
+}
+.wrapai-btnPrimary:hover { filter: brightness(1.03); }
+
+.wrapai-muted { opacity: 0.75; }
+.wrapai-small { font-size: 12px; line-height: 1.6; }
+
+/* ---------- Marquee (big logos, always moves) ---------- */
 .wrapai-marquee {
   position: relative;
   overflow: hidden;
@@ -34,11 +251,12 @@ body {
 
 .wrapai-marquee-track {
   display: flex;
-  width: max-content;
+  flex-wrap: nowrap;
   gap: 28px;
-  animation: wrapai-marquee-scroll 22s linear infinite;
-  padding: 6px 0;
+  width: max-content;
+  animation: wrapai-marquee-scroll 18s linear infinite;
   will-change: transform;
+  transform: translate3d(0,0,0);
 }
 
 .wrapai-marquee:hover .wrapai-marquee-track {
@@ -46,23 +264,53 @@ body {
 }
 
 .wrapai-marquee-item {
+  flex: 0 0 auto;
+  height: 96px;
+  padding: 16px 26px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 76px;
-  padding: 10px 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(0, 0, 0, 0.18);
 }
 
 @keyframes wrapai-marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-50%,0,0); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .wrapai-marquee-track {
-    animation: none;
-  }
+/* Optional fades at edges */
+.wrapai-fadeL, .wrapai-fadeR {
+  pointer-events: none;
+  position: absolute;
+  top: 0; height: 100%;
+  width: 70px;
+}
+.wrapai-fadeL { left: 0; background: linear-gradient(90deg, var(--background), transparent); }
+.wrapai-fadeR { right: 0; background: linear-gradient(270deg, var(--background), transparent); }
+
+/* Hero background (uses optional image if you add it) */
+.wrapai-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 600px at 25% 10%, rgba(91,43,216,0.20), transparent 60%),
+    radial-gradient(900px 500px at 75% 0%, rgba(46,212,255,0.12), transparent 60%),
+    linear-gradient(180deg, rgba(7,6,13,1), rgba(11,7,20,1));
+}
+
+.wrapai-hero.has-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/hero/track.jpg") center/cover no-repeat;
+  opacity: 0.22; /* subtle like Assetto */
+  mix-blend-mode: screen;
+}
+
+.wrapai-hero > * {
+  position: relative;
+  z-index: 1;
 }
